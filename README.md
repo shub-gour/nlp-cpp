@@ -160,6 +160,22 @@ Run tests:
 
 Tokenizer benchmark on large input (500,000 tokens):
 
+| Implementation                 |     Time |
+| ------------------------------ | -------: |
+| Regex tokenizer                | ~1107 ms |
+| Manual tokenizer               |  ~194 ms |
+| Manual tokenizer + `reserve()` |  ~135 ms |
+
+Optimization approach:
+
+* Replaced `std::regex` tokenization with manual character scanning
+* Reduced regex engine overhead
+* Added vector memory preallocation using `reserve()`
+* Achieved approximately **8.2× speedup** over the baseline implementation
+
+
+Tokenizer benchmark on large input (500,000 tokens):
+
 | Implementation      |     Time |
 | ------------------- | -------: |
 | Regex tokenizer     | ~1107 ms |
