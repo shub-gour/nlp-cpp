@@ -155,6 +155,23 @@ Run tests:
 * Benchmarks vs NLTK
 * Packaging and open-source release
 
+
+## Benchmark Results
+
+Tokenizer benchmark on large input (500,000 tokens):
+
+| Implementation      |     Time |
+| ------------------- | -------: |
+| Regex tokenizer     | ~1107 ms |
+| Optimized tokenizer |  ~194 ms |
+
+Optimization approach:
+
+* Replaced `std::regex` tokenization with manual character-by-character parsing
+* Reduced regex engine overhead
+* Improved throughput by approximately **5.7×**
+
+
 ## Status
 
 Currently under active development.

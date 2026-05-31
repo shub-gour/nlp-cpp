@@ -24,6 +24,7 @@ namespace nlp_cpp {
     ) {
 
         std::vector<std::string> tokens;
+        tokens.reserve(text.size() / 4);
 
         std::string current_word;
 
