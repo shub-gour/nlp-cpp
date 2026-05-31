@@ -1,6 +1,7 @@
 #include "../include/nlp_cpp/tokenizer.hpp"
 
 #include <regex>
+#include <cctype>
 
 namespace nlp_cpp {
 
@@ -24,23 +25,33 @@ namespace nlp_cpp {
 
         std::vector<std::string> tokens;
 
-        std::regex word_regex("[A-Za-z]+");
+        std::string current_word;
 
-        auto words_begin =
-            std::sregex_iterator(
-                text.begin(),
-                text.end(),
-                word_regex
+        for (char c : text) {
+
+            if (std::isalnum(c)) {
+
+                current_word += c;
+            }
+
+            else {
+
+                if (!current_word.empty()) {
+
+                    tokens.push_back(
+                    current_word
+                    );
+
+                    current_word.clear();
+                }
+            }
+        }
+
+        if (!current_word.empty()) {
+
+            tokens.push_back(
+            current_word
             );
-
-        auto words_end =
-            std::sregex_iterator();
-
-        for (auto it = words_begin;
-             it != words_end;
-             ++it) {
-
-            tokens.push_back(it->str());
         }
 
         return tokens;
