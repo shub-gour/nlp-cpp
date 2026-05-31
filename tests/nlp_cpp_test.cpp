@@ -101,7 +101,27 @@ bool test_stemmer() {
         &&
 
         nlp_cpp::stem("working")
-            == "work";
+            == "work"
+
+        &&
+
+        nlp_cpp::stem("studies")
+            == "studi"
+
+        &&
+
+        nlp_cpp::stem("tries")
+            == "tri"
+
+        &&
+
+        nlp_cpp::stem("boxes")
+            == "box"
+
+        &&
+
+        nlp_cpp::stem("classes")
+            == "class";
 }
 
 int main() {
