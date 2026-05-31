@@ -6,6 +6,7 @@
 #include "../include/nlp_cpp/stopwords.hpp"
 #include "../include/nlp_cpp/freqdist.hpp"
 #include "../include/nlp_cpp/stemmer.hpp"
+#include "../include/nlp_cpp/lemmatizer.hpp"
 
 bool test_word_tokenize() {
 
@@ -124,6 +125,38 @@ bool test_stemmer() {
             == "class";
 }
 
+bool test_lemmatizer() {
+
+    return
+        nlp_cpp::lemmatize("studies")
+            == "study"
+
+        &&
+
+        nlp_cpp::lemmatize("running")
+            == "run"
+
+        &&
+
+        nlp_cpp::lemmatize("mice")
+            == "mouse"
+
+        &&
+
+        nlp_cpp::lemmatize("children")
+            == "child"
+
+        &&
+
+        nlp_cpp::lemmatize("better")
+            == "good"
+
+        &&
+
+        nlp_cpp::lemmatize("cars")
+            == "car";
+}
+
 int main() {
 
     if (test_word_tokenize()) {
@@ -164,6 +197,14 @@ int main() {
     } else {
         std::cout
         << "stemmer FAILED\n";
+    }
+
+    if (test_lemmatizer()) {
+        std::cout
+        << "lemmatizer PASSED\n";
+    } else {
+        std::cout
+        << "lemmatizer FAILED\n";
     }
 
     return 0;

@@ -13,6 +13,7 @@ add_executable(app
     src/stopwords.cpp
     src/freqdist.cpp
     src/stemmer.cpp
+    src/lemmatizer.cpp
 )
 
 # Tests
@@ -22,10 +23,25 @@ add_executable(test_app
     src/stopwords.cpp
     src/freqdist.cpp
     src/stemmer.cpp
+    src/lemmatizer.cpp
 )
 
 # Benchmark
 add_executable(benchmark_tokenizer
     benchmarks/benchmark_tokenizer.cpp
     src/tokenizer.cpp
+)
+
+set(PYBIND11_FINDPYTHON ON)
+
+find_package(Python REQUIRED COMPONENTS Interpreter Development)
+find_package(pybind11 REQUIRED)
+
+pybind11_add_module(nlp_cpp
+    src/bindings.cpp
+    src/tokenizer.cpp
+    src/stopwords.cpp
+    src/freqdist.cpp
+    src/stemmer.cpp
+    src/lemmatizer.cpp
 )

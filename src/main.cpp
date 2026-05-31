@@ -5,6 +5,7 @@
 #include "../include/nlp_cpp/stopwords.hpp"
 #include "../include/nlp_cpp/freqdist.hpp"
 #include "../include/nlp_cpp/stemmer.hpp"
+#include "../include/nlp_cpp/lemmatizer.hpp"
 
 int main() {
 
@@ -86,6 +87,28 @@ int main() {
             << " -> "
             << pair.second
             << std::endl;
+    }
+
+
+    std::cout
+        << "\n=== LEMMATIZER ===\n";
+
+    std::vector<std::string> lemma_words = {
+        "studies",
+        "running",
+        "mice",
+        "children",
+        "better",
+        "cars"
+    };
+
+    for (const auto& word : lemma_words) {
+
+        std::cout
+            << word
+            << " -> "
+            << nlp_cpp::lemmatize(word)
+        << std::endl;
     }
 
     return 0;

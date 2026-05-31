@@ -4,3 +4,32 @@
 *.o
 *.obj
 *.log
+/build/
+
+# VS Code
+.vscode/
+
+# executables
+*.exe
+
+# object files
+*.o
+*.obj
+
+# logs
+*.log
+
+# python compiled extensions
+*.pyd
+
+# dlls
+*.dll
+
+# cmake generated files
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CMakeFiles/
+
+# temp
+*.tmp
