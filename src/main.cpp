@@ -7,6 +7,7 @@
 #include "../include/nlp_cpp/stemmer.hpp"
 #include "../include/nlp_cpp/lemmatizer.hpp"
 #include "../include/nlp_cpp/pos_tagger.hpp"
+#include "../include/nlp_cpp/ner.hpp"
 
 int main()
 {
@@ -128,7 +129,33 @@ int main()
         nlp_cpp::pos_tag(pos_words);
 
     for (const auto &pair :
-         tagged){
+         tagged)
+    {
+
+        std::cout
+            << pair.first
+            << " -> "
+            << pair.second
+            << std::endl;
+    }
+
+    std::cout
+        << "\n=== NER ===\n";
+
+    std::vector<std::string> ner_words = {
+        "Elon",
+        "Musk",
+        "works",
+        "at",
+        "Tesla",
+        "India"};
+
+    auto ner_result =
+        nlp_cpp::ner(ner_words);
+
+    for (const auto &pair :
+         ner_result)
+    {
 
         std::cout
             << pair.first

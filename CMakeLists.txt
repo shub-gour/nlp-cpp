@@ -15,6 +15,7 @@ add_executable(app
     src/stemmer.cpp
     src/lemmatizer.cpp
     src/pos_tagger.cpp
+    src/ner.cpp
 )
 
 # Tests
@@ -26,6 +27,7 @@ add_executable(test_app
     src/stemmer.cpp
     src/lemmatizer.cpp
     src/pos_tagger.cpp
+    src/ner.cpp
 )
 
 # Benchmark
@@ -47,4 +49,5 @@ pybind11_add_module(nlp_cpp
     src/stemmer.cpp
     src/lemmatizer.cpp
     src/pos_tagger.cpp
+    src/ner.cpp
 )

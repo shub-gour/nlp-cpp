@@ -8,6 +8,7 @@
 #include "../include/nlp_cpp/stemmer.hpp"
 #include "../include/nlp_cpp/lemmatizer.hpp"
 #include "../include/nlp_cpp/pos_tagger.hpp"
+#include "../include/nlp_cpp/ner.hpp"
 
 bool test_word_tokenize()
 {
@@ -182,6 +183,50 @@ bool test_pos_tagger()
         result[5].second == "NOUN";
 }
 
+bool test_ner()
+{
+
+    std::vector<std::string> words = {
+        "Elon",
+        "Musk",
+        "works",
+        "at",
+        "Tesla",
+        "India",
+        "coding"};
+
+    auto result =
+        nlp_cpp::ner(words);
+
+    return
+
+        result[0].second == "PERSON"
+
+        &&
+
+        result[1].second == "PERSON"
+
+        &&
+
+        result[2].second == "O"
+
+        &&
+
+        result[3].second == "O"
+
+        &&
+
+        result[4].second == "ORG"
+
+        &&
+
+        result[5].second == "LOCATION"
+
+        &&
+
+        result[6].second == "O";
+}
+
 int main()
 {
 
@@ -260,6 +305,17 @@ int main()
     {
         std::cout
             << "pos_tagger FAILED\n";
+    }
+
+    if (test_ner())
+    {
+        std::cout
+            << "ner PASSED\n";
+    }
+    else
+    {
+        std::cout
+            << "ner FAILED\n";
     }
 
     return 0;
