@@ -1,207 +1,72 @@
-# NLP-CPP
+# NLP-CPP 🚀
 
-A high-performance NLP library built in C++ inspired by core Natural Language Toolkit (NLTK) functionality.
+A high-performance, NLTK-inspired NLP toolkit implemented in **C++** with **Python bindings** for faster classical NLP workflows.
 
-## Overview
+NLP-CPP is designed to bring the performance of native C++ to common Natural Language Processing (NLP) tasks while remaining easy to use from Python.
 
-NLP-CPP is a modular NLP library designed to provide fast and efficient classical NLP operations in modern C++.
+## Features
 
-The project focuses on:
+* ✅ Word Tokenization
+* ✅ Sentence Tokenization
+* ✅ Stopword Removal
+* ✅ Frequency Distribution
+* ✅ Porter-Inspired Stemmer
+* ✅ Lemmatizer
+* ✅ Rule-Based POS Tagging
+* ✅ Named Entity Recognition (NER)
+* ✅ Python Bindings (pybind11)
+* ✅ pip-installable Package
+* ✅ Benchmarking vs NLTK
+* ✅ Unit Tests
 
-* High-performance text processing
-* Modular C++ architecture
-* Clean and testable code
-* Future Python interoperability using pybind11
-* Benchmarking against NLTK
+---
 
-## Features Implemented
+## Why NLP-CPP?
 
-### Tokenizer
+Many classical NLP workflows rely on Python implementations that are easy to use but slower for large-scale text processing.
 
-* Word Tokenization
-* Sentence Tokenization
+NLP-CPP aims to provide:
 
-Examples:
+* Faster execution through native C++ implementation
+* Python interoperability via pybind11
+* Familiar NLP workflow components
+* Clean modular architecture
+* Benchmark-driven optimization
 
-Input:
+---
 
-```text
-Hello, world! I love NLP.
-```
-
-Word Tokenization:
-
-```text
-Hello
-world
-I
-love
-NLP
-```
-
-Sentence Tokenization:
+## Project Architecture
 
 ```text
-Hello world
-I love NLP
+Text
+ ↓
+Tokenizer
+ ↓
+Stopword Removal
+ ↓
+Stemmer / Lemmatizer
+ ↓
+POS Tagger
+ ↓
+Named Entity Recognition
 ```
 
-### Stopword Removal
+---
 
-Input:
+## Benchmark
 
-```text
-I love NLP and machine learning
-```
+### Tokenization Benchmark
 
-Output:
+Benchmark performed on identical input (~500,000 tokens).
 
-```text
-love
-NLP
-machine
-learning
-```
+| Library | Time       |
+| ------- | ---------- |
+| NLTK    | 1.8797 sec |
+| NLP-CPP | 0.1975 sec |
 
-### Frequency Distribution
+### Result
 
-Counts word occurrences.
-
-Example:
-
-```text
-nlp -> 3
-cpp -> 2
-ai -> 1
-```
-
-### Stemmer
-
-Basic stemming support:
-
-```text
-running -> run
-played -> play
-cats -> cat
-working -> work
-```
-
-## Project Structure
-
-```text
-nlp-cpp/
-│
-├── include/
-├── src/
-├── tests/
-├── benchmarks/
-├── docs/
-├── CMakeLists.txt
-└── README.md
-```
-
-## Build Instructions
-
-Clone repository:
-
-```bash
-git clone <repo-url>
-cd nlp-cpp
-```
-
-Build:
-
-```bash
-mkdir build
-cd build
-cmake .. -G "MinGW Makefiles"
-cmake --build .
-```
-
-Run:
-
-```bash
-.\app.exe
-```
-
-Run tests:
-
-```bash
-.\test_app.exe
-```
-
-## Tech Stack
-
-* C++17
-* CMake
-* MinGW g++
-* Regex
-* STL (`vector`, `unordered_map`, `unordered_set`)
-
-## Current Modules
-
-* Tokenizer
-* Stopword Removal
-* Frequency Distribution
-* Stemmer
-
-## Future Roadmap
-
-* Porter Stemmer (advanced)
-* Lemmatizer
-* POS Tagger
-* Named Entity Recognition
-* Python bindings with pybind11
-* Benchmarks vs NLTK
-* Packaging and open-source release
-
-
-## Benchmark Results
-
-Tokenizer benchmark on large input (500,000 tokens):
-
-| Implementation                 |     Time |
-| ------------------------------ | -------: |
-| Regex tokenizer                | ~1107 ms |
-| Manual tokenizer               |  ~194 ms |
-| Manual tokenizer + `reserve()` |  ~135 ms |
-
-Optimization approach:
-
-* Replaced `std::regex` tokenization with manual character scanning
-* Reduced regex engine overhead
-* Added vector memory preallocation using `reserve()`
-* Achieved approximately **8.2× speedup** over the baseline implementation
-
-
-Tokenizer benchmark on large input (500,000 tokens):
-
-| Implementation      |     Time |
-| ------------------- | -------: |
-| Regex tokenizer     | ~1107 ms |
-| Optimized tokenizer |  ~194 ms |
-
-Optimization approach:
-
-* Replaced `std::regex` tokenization with manual character-by-character parsing
-* Reduced regex engine overhead
-* Improved throughput by approximately **5.7×**
-
-
-## Performance Benchmark
-
-Tokenizer benchmark on identical input (500,000 tokens):
-
-| Library | Time      |
-| ------- | --------- |
-| NLTK    | ~1.88 sec |
-| NLP-CPP | ~0.20 sec |
-
-Result:
-
-* Approximately **9.5× faster than NLTK**
-* Same token count output (**500,000 tokens**)
-* Optimized tokenizer implemented using manual character scanning instead of regex
+**~9.5× faster than NLTK in tested workload**
 
 Benchmark command:
 
@@ -209,8 +74,383 @@ Benchmark command:
 python benchmark_vs_nltk.py
 ```
 
+> Note: Performance varies depending on dataset, hardware, workload, and tokenizer complexity.
 
+---
 
-## Status
+## Project Structure
 
-Currently under active development.
+```text
+nlp-cpp/
+│
+├── benchmarks/
+│   └── benchmark_tokenizer.cpp
+│
+├── include/
+│   └── nlp_cpp/
+│       ├── tokenizer.hpp
+│       ├── stopwords.hpp
+│       ├── freqdist.hpp
+│       ├── stemmer.hpp
+│       ├── lemmatizer.hpp
+│       ├── pos_tagger.hpp
+│       └── ner.hpp
+│
+├── nlp_cpp/
+│   └── __init__.py
+│
+├── src/
+│   ├── bindings.cpp
+│   ├── tokenizer.cpp
+│   ├── stopwords.cpp
+│   ├── freqdist.cpp
+│   ├── stemmer.cpp
+│   ├── lemmatizer.cpp
+│   ├── pos_tagger.cpp
+│   ├── ner.cpp
+│   └── main.cpp
+│
+├── tests/
+│   └── nlp_cpp_test.cpp
+│
+├── benchmark_vs_nltk.py
+├── CMakeLists.txt
+├── pyproject.toml
+├── setup.py
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/shub-gour/nlp-cpp.git
+cd nlp-cpp
+```
+
+### Install Python Package
+
+```bash
+pip install .
+```
+
+---
+
+## Build From Source (C++)
+
+### Create Build Folder
+
+```bash
+mkdir build
+cd build
+```
+
+### Configure
+
+#### Windows (MinGW)
+
+```bash
+cmake .. -G "MinGW Makefiles"
+```
+
+#### Linux / macOS
+
+```bash
+cmake ..
+```
+
+### Build
+
+```bash
+cmake --build .
+```
+
+---
+
+## Usage Examples
+
+### Tokenization
+
+```python
+import nlp_cpp
+
+tokens = nlp_cpp.word_tokenize(
+    "I love NLP in C++"
+)
+
+print(tokens)
+```
+
+Output:
+
+```python
+['I', 'love', 'NLP', 'in', 'C++']
+```
+
+---
+
+### Sentence Tokenization
+
+```python
+import nlp_cpp
+
+sentences = nlp_cpp.sent_tokenize(
+    "Hello world. NLP is fun."
+)
+
+print(sentences)
+```
+
+Output:
+
+```python
+[
+    'Hello world',
+    'NLP is fun'
+]
+```
+
+---
+
+### Stopword Removal
+
+```python
+import nlp_cpp
+
+tokens = [
+    "this",
+    "is",
+    "an",
+    "example"
+]
+
+print(
+    nlp_cpp.remove_stopwords(tokens)
+)
+```
+
+---
+
+### Frequency Distribution
+
+```python
+import nlp_cpp
+
+tokens = [
+    "apple",
+    "banana",
+    "apple"
+]
+
+print(
+    nlp_cpp.freq_dist(tokens)
+)
+```
+
+---
+
+### Stemming
+
+```python
+import nlp_cpp
+
+print(
+    nlp_cpp.stem("running")
+)
+
+print(
+    nlp_cpp.stem("hopping")
+)
+```
+
+Output:
+
+```python
+run
+hop
+```
+
+---
+
+### Lemmatization
+
+```python
+import nlp_cpp
+
+print(
+    nlp_cpp.lemmatize("mice")
+)
+
+print(
+    nlp_cpp.lemmatize("children")
+)
+```
+
+Output:
+
+```python
+mouse
+child
+```
+
+---
+
+### POS Tagging
+
+```python
+import nlp_cpp
+
+tokens = [
+    "I",
+    "love",
+    "coding",
+    "quickly"
+]
+
+print(
+    nlp_cpp.pos_tag(tokens)
+)
+```
+
+Output:
+
+```python
+[
+    ('I', 'PRON'),
+    ('love', 'VERB'),
+    ('coding', 'VERB'),
+    ('quickly', 'ADV')
+]
+```
+
+---
+
+### Named Entity Recognition (NER)
+
+```python
+import nlp_cpp
+
+tokens = [
+    "Elon",
+    "Musk",
+    "works",
+    "at",
+    "Tesla",
+    "in",
+    "New",
+    "York"
+]
+
+print(
+    nlp_cpp.ner(tokens)
+)
+```
+
+Output:
+
+```python
+[
+    ('Elon Musk', 'PERSON'),
+    ('works', 'O'),
+    ('at', 'O'),
+    ('Tesla', 'ORG'),
+    ('in', 'O'),
+    ('New York', 'LOCATION')
+]
+```
+
+---
+
+## Running Tests
+
+Build project first:
+
+```bash
+cmake --build .
+```
+
+Run tests:
+
+### Windows
+
+```bash
+./test_app.exe
+```
+
+### Linux / macOS
+
+```bash
+./test_app
+```
+
+---
+
+## Running Benchmark
+
+```bash
+python benchmark_vs_nltk.py
+```
+
+---
+
+## Roadmap
+
+* [ ] Smarter tokenizer (contractions, punctuation, decimals)
+* [ ] Better POS tagging
+* [ ] Improved NER
+* [ ] More stemming rules
+* [ ] Better lemmatization
+* [ ] SIMD optimization
+* [ ] Multithreading support
+* [ ] Additional benchmarks
+* [ ] PyPI release
+
+---
+
+## Contributing
+
+Contributions are welcome.
+
+Feel free to:
+
+* Open issues
+* Suggest improvements
+* Submit pull requests
+
+Areas where contributions are especially welcome:
+
+* NLP improvements
+* Performance optimization
+* Benchmarking
+* Testing
+* Python packaging
+* Documentation
+
+---
+
+## Tech Stack
+
+* C++17
+* pybind11
+* CMake
+* Python
+* MinGW (Windows build)
+* Benchmarking and unit testing
+
+---
+
+## Disclaimer
+
+NLP-CPP is currently an educational and engineering-focused project inspired by classical NLP tooling. It is **not a full replacement for NLTK** and is under active development.
+
+---
+
+## Author
+
+**Shubham Gour**
+
+If you found this project interesting, consider starring the repository ⭐
