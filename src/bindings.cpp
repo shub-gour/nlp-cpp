@@ -6,6 +6,7 @@
 #include "../include/nlp_cpp/freqdist.hpp"
 #include "../include/nlp_cpp/stemmer.hpp"
 #include "../include/nlp_cpp/lemmatizer.hpp"
+#include "../include/nlp_cpp/pos_tagger.hpp"
 
 namespace py = pybind11;
 
@@ -43,4 +44,10 @@ PYBIND11_MODULE(nlp_cpp, m) {
         "lemmatize",
         &nlp_cpp::lemmatize
     );
+
+    m.def(
+        "pos_tag",
+        &nlp_cpp::pos_tag
+    );
+    
 }

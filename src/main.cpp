@@ -6,8 +6,10 @@
 #include "../include/nlp_cpp/freqdist.hpp"
 #include "../include/nlp_cpp/stemmer.hpp"
 #include "../include/nlp_cpp/lemmatizer.hpp"
+#include "../include/nlp_cpp/pos_tagger.hpp"
 
-int main() {
+int main()
+{
 
     std::cout
         << "=== TOKENIZER ===\n";
@@ -18,7 +20,8 @@ int main() {
     auto tokens =
         nlp_cpp::word_tokenize(text);
 
-    for (const auto& token : tokens) {
+    for (const auto &token : tokens)
+    {
         std::cout
             << token
             << std::endl;
@@ -35,11 +38,11 @@ int main() {
 
     auto filtered_tokens =
         nlp_cpp::remove_stopwords(
-            sentence_tokens
-        );
+            sentence_tokens);
 
-    for (const auto& word :
-         filtered_tokens) {
+    for (const auto &word :
+         filtered_tokens)
+    {
 
         std::cout
             << word
@@ -53,10 +56,10 @@ int main() {
         "running",
         "played",
         "cats",
-        "working"
-    };
+        "working"};
 
-    for (const auto& word : words) {
+    for (const auto &word : words)
+    {
 
         std::cout
             << word
@@ -76,11 +79,11 @@ int main() {
 
     auto frequencies =
         nlp_cpp::freq_dist(
-            freq_tokens
-        );
+            freq_tokens);
 
-    for (const auto& pair :
-         frequencies) {
+    for (const auto &pair :
+         frequencies)
+    {
 
         std::cout
             << pair.first
@@ -88,7 +91,6 @@ int main() {
             << pair.second
             << std::endl;
     }
-
 
     std::cout
         << "\n=== LEMMATIZER ===\n";
@@ -99,16 +101,40 @@ int main() {
         "mice",
         "children",
         "better",
-        "cars"
-    };
+        "cars"};
 
-    for (const auto& word : lemma_words) {
+    for (const auto &word : lemma_words)
+    {
 
         std::cout
             << word
             << " -> "
             << nlp_cpp::lemmatize(word)
-        << std::endl;
+            << std::endl;
+    }
+
+    std::cout
+        << "\n=== POS TAGGER ===\n";
+
+    std::vector<std::string> pos_words = {
+        "I",
+        "love",
+        "coding",
+        "quickly",
+        "beautiful",
+        "computer"};
+
+    auto tagged =
+        nlp_cpp::pos_tag(pos_words);
+
+    for (const auto &pair :
+         tagged){
+
+        std::cout
+            << pair.first
+            << " -> "
+            << pair.second
+            << std::endl;
     }
 
     return 0;

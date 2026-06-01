@@ -14,6 +14,7 @@ add_executable(app
     src/freqdist.cpp
     src/stemmer.cpp
     src/lemmatizer.cpp
+    src/pos_tagger.cpp
 )
 
 # Tests
@@ -24,6 +25,7 @@ add_executable(test_app
     src/freqdist.cpp
     src/stemmer.cpp
     src/lemmatizer.cpp
+    src/pos_tagger.cpp
 )
 
 # Benchmark
@@ -44,4 +46,5 @@ pybind11_add_module(nlp_cpp
     src/freqdist.cpp
     src/stemmer.cpp
     src/lemmatizer.cpp
+    src/pos_tagger.cpp
 )
