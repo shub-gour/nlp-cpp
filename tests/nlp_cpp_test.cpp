@@ -113,7 +113,17 @@ bool test_stemmer() {
         &&
 
         nlp_cpp::stem("played")
-            == "play";
+            == "play"
+
+        &&
+
+        nlp_cpp::stem("hopping")
+            == "hop"
+
+        &&
+
+        nlp_cpp::stem("filing")
+            == "file";
 }
 
 bool test_lemmatizer() {
