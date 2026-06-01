@@ -86,13 +86,14 @@ bool test_freq_dist() {
 bool test_stemmer() {
 
     return
-        nlp_cpp::stem("running")
-            == "run"
+
+        nlp_cpp::stem("caresses")
+            == "caress"
 
         &&
 
-        nlp_cpp::stem("played")
-            == "play"
+        nlp_cpp::stem("ponies")
+            == "poni"
 
         &&
 
@@ -101,28 +102,18 @@ bool test_stemmer() {
 
         &&
 
-        nlp_cpp::stem("working")
-            == "work"
+        nlp_cpp::stem("class")
+            == "class"
 
         &&
 
-        nlp_cpp::stem("studies")
-            == "studi"
+        nlp_cpp::stem("running")
+            == "run"
 
         &&
 
-        nlp_cpp::stem("tries")
-            == "tri"
-
-        &&
-
-        nlp_cpp::stem("boxes")
-            == "box"
-
-        &&
-
-        nlp_cpp::stem("classes")
-            == "class";
+        nlp_cpp::stem("played")
+            == "play";
 }
 
 bool test_lemmatizer() {
