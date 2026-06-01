@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: nlp_cpp
+Version: 0.1.0
+Summary: High-performance NLP library in C++
+Author: Shubham Gour
+Dynamic: author
+Dynamic: summary

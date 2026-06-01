@@ -188,6 +188,29 @@ Optimization approach:
 * Improved throughput by approximately **5.7×**
 
 
+## Performance Benchmark
+
+Tokenizer benchmark on identical input (500,000 tokens):
+
+| Library | Time      |
+| ------- | --------- |
+| NLTK    | ~1.88 sec |
+| NLP-CPP | ~0.20 sec |
+
+Result:
+
+* Approximately **9.5× faster than NLTK**
+* Same token count output (**500,000 tokens**)
+* Optimized tokenizer implemented using manual character scanning instead of regex
+
+Benchmark command:
+
+```bash
+python benchmark_vs_nltk.py
+```
+
+
+
 ## Status
 
 Currently under active development.
