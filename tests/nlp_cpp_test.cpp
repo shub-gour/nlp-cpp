@@ -183,8 +183,7 @@ bool test_pos_tagger()
         result[5].second == "NOUN";
 }
 
-bool test_ner()
-{
+bool test_ner() {
 
     std::vector<std::string> words = {
         "Elon",
@@ -192,39 +191,47 @@ bool test_ner()
         "works",
         "at",
         "Tesla",
-        "India",
-        "coding"};
+        "New",
+        "York"
+    };
 
     auto result =
         nlp_cpp::ner(words);
 
     return
 
-        result[0].second == "PERSON"
+        result[0].first
+            == "Elon Musk"
 
         &&
 
-        result[1].second == "PERSON"
+        result[0].second
+            == "PERSON"
 
         &&
 
-        result[2].second == "O"
+        result[1].second
+            == "O"
 
         &&
 
-        result[3].second == "O"
+        result[2].second
+            == "O"
 
         &&
 
-        result[4].second == "ORG"
+        result[3].second
+            == "ORG"
 
         &&
 
-        result[5].second == "LOCATION"
+        result[4].first
+            == "New York"
 
         &&
 
-        result[6].second == "O";
+        result[4].second
+            == "LOCATION";
 }
 
 int main()

@@ -26,6 +26,8 @@ std::vector<
         {"Microsoft", "ORG"},
 
         {"India", "LOCATION"},
+        {"New", "LOCATION"},
+        {"York", "LOCATION"},
         {"USA", "LOCATION"},
         {"London", "LOCATION"},
 
@@ -38,7 +40,11 @@ std::vector<
             std::string,
             std::string
         >
-    > result;
+    > temp_result;
+
+    // -------------------
+    // First pass
+    // -------------------
 
     for (const auto& token :
          tokens) {
@@ -53,7 +59,6 @@ std::vector<
             tag = it->second;
         }
 
-        // Capitalized unknown
         else if (
             !token.empty()
             &&
@@ -65,9 +70,63 @@ std::vector<
             tag = "PERSON";
         }
 
-        result.push_back(
+        temp_result.push_back(
             {
                 token,
+                tag
+            }
+        );
+    }
+
+    // -------------------
+    // Merge entities
+    // -------------------
+
+    std::vector<
+        std::pair<
+            std::string,
+            std::string
+        >
+    > result;
+
+    for (size_t i = 0;
+         i < temp_result.size();
+         ++i) {
+
+        std::string entity =
+            temp_result[i].first;
+
+        std::string tag =
+            temp_result[i].second;
+
+        while (
+            i + 1 <
+            temp_result.size()
+
+            &&
+
+            temp_result[i + 1]
+                .second
+            ==
+            tag
+
+            &&
+
+            tag != "O"
+        ) {
+
+            entity +=
+                " "
+                +
+                temp_result[i + 1]
+                    .first;
+
+            ++i;
+        }
+
+        result.push_back(
+            {
+                entity,
                 tag
             }
         );
